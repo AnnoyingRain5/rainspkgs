@@ -7,7 +7,9 @@
 # commands such as:
 #     nix-build -A mypackage
 
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 {
   # The `lib`, `overlays`, `nixosModules`, `homeModules`,
@@ -19,7 +21,9 @@
   # flakeModules = { }; # flake-parts modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  example-package = pkgs.callPackage ./pkgs/example-package { };
+  avali-scratch = pkgs.callPackage ./pkgs/avali-scratch { };
+  discord-krisp-patcher = pkgs.callPackage ./pkgs/discord-krisp-patcher { };
+  monado-pimax = pkgs.callPackage ./pkgs/monado-pimax { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }

@@ -51,6 +51,6 @@ stdenv.mkDerivation (finalAttrs: {
     license = lib.licenses.gpl3Only;
     platforms = lib.platforms.linux;
     mainProgram = "3beans";
-    maintainers = with lib.maintainers; [ annoyingrains ];
+    #maintainers = with lib.maintainers; [ annoyingrains ];
   };
 })

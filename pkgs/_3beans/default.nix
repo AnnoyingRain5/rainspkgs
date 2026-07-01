@@ -38,10 +38,6 @@ stdenv.mkDerivation (finalAttrs: {
     make install DESTDIR=$out
     runHook postInstall
   '';
-  postPatch = ''
-    substituteInPlace src-tauri/tauri.conf.json \
-      --replace-fail '"createUpdaterArtifacts": true' '"createUpdaterArtifacts": false'
-  '';
 
   passthru.updateScript = unstableGitUpdater { hardcodeZeroVersion = true; };
 

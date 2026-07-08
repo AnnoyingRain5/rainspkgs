@@ -11,7 +11,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "3beans";
-  version = "0-unstable-2026-06-11";
+  version = "0-unstable-2026-07-05";
 
   strictDeps = true;
   __structuredAttrs = true;
@@ -19,8 +19,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Hydr8gon";
     repo = "3Beans";
-    rev = "83a0896d0ae3a18d2ace93d41f91e6b8cb46bea3";
-    sha256 = "sha256-HUXJt/HulLYsgaK3AlpRpJy1Wsgtgoffr5LqJLun4sg=";
+    rev = "5b50adc0b028ecc3dd83f1efd1804cd2e301fdaa";
+    sha256 = "sha256-tdh6x6MmKsKJ4YasklV/AT04tInsy0QrH7xvTFacqZE=";
   };
 
   nativeBuildInputs = [

@@ -20,22 +20,22 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "lce-emerald-launcher";
-  version = "1.4.1";
+  version = "nightly-unstable-2026-07-07";
   src = fetchFromGitHub {
     owner = "LCE-Hub";
     repo = "LCE-emerald-launcher";
-    rev = "v${finalAttrs.version}";
-    sha256 = "sha256-YBco9tIsNq6Qv5PCB0u7PR9zTgIiaXqQEsygtit1HHY=";
+    rev = "f46453f1cdc6d9ea51c5e95e9ed9c9b77d72a67b";
+    sha256 = "sha256-JbxshidGIhCYAq7vNX1eXPjWJ+m8DC2AAM66dPpHnBY=";
   };
 
-  cargoHash = "sha256-QxMD+oCc8BO4ayX5ma0gkJbcdI11XAZldvWcTxgb940=";
+  cargoHash = "sha256-6uSkFnAOnPIRm9jIU5ZvedHDGdkwX6m7HHoYyo6y4qI=";
 
   # Assuming our app's frontend uses `npm` as a package manager
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     pnpm = pnpm_10;
     fetcherVersion = 4;
-    hash = "sha256-MHAMGQSJtBEzi5E4pYqkUjZ8oQUTX7oMCf/JTTnaREQ=";
+    hash = "sha256-nY2DHKanLq6oe/NeWEdCU160OJ9srofVN34S/pfDk9I=";
   };
 
   nativeBuildInputs = [

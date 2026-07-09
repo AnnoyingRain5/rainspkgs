@@ -2,18 +2,18 @@
   pkgs,
   dolphin-emu,
   openxr-loader,
+  lib,
 }:
 
 (dolphin-emu.overrideAttrs (oldattrs: {
   pname = "dolphin-xr";
   buildInputs = (oldattrs.buildInputs or [ ]) ++ [ openxr-loader ];
   src = pkgs.fetchFromGitHub {
-    owner = "AnnoyingRain5"; # https://github.com/iChris4/dolphinXR/pull/2
+    owner = "iChris4"; # https://github.com/iChris4/dolphinXR/pull/2
     repo = "dolphinXR";
-    rev = "7486f8ec05621f658eb6422c0e42ece96d303491";
-    hash = "sha256-2Zyw8kj0Zc2YrmZbqW2Ai3YQdUGOJR01beH13LkJBCc=";
+    rev = "f500c46df1a1be9a1a4e2afc6c6eb78f0f6251bf";
+    hash = "sha256-5kmQ9YOrAR5Zh/qpphqNIq9Lbh7CWHcp22zQR9ydwWo=";
     fetchSubmodules = true;
-    deepClone = false;
     leaveDotGit = true;
     postFetch = ''
       pushd $out
@@ -22,9 +22,8 @@
       popd
     '';
   };
-  #postPatch = ''
-  #  # Remove the OpenXR submodule directory so it uses system package instead
-  #  rm -rf Externals/OpenXR
-  #'';
-  meta.broken = true;
+  cmakeFlags = (oldattrs.cmakeFlags or [ ]) ++ [
+    (lib.cmakeBool "ENABLE_VR" true)
+  ];
+  env.NIX_CFLAGS_COMPILE = "-fpermissive -fexceptions";
 }))

@@ -11,7 +11,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "3beans";
-  version = "0-unstable-2026-07-05";
+  version = "0-unstable-2026-06-17";
 
   strictDeps = true;
   __structuredAttrs = true;
@@ -19,8 +19,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Hydr8gon";
     repo = "3Beans";
-    rev = "5b50adc0b028ecc3dd83f1efd1804cd2e301fdaa";
-    sha256 = "sha256-tdh6x6MmKsKJ4YasklV/AT04tInsy0QrH7xvTFacqZE=";
+    rev = "2fc156ca6e2067ac8e66fcb17052f05b163c36d8";
+    hash = "sha256-DwzHZ/hM+dJUzKT4DGxD50vK+a54JbYyusO2LtpJATo=";
   };
 
   nativeBuildInputs = [
@@ -29,15 +29,12 @@ stdenv.mkDerivation (finalAttrs: {
   ];
   buildInputs = [
     libepoxy
-    wxwidgets_3_3
     portaudio
   ];
 
-  installPhase = ''
-    runHook preInstall
-    make install DESTDIR=$out
-    runHook postInstall
-  '';
+  makeFlags = [
+    "DESTDIR=$(out)"
+  ];
 
   passthru.updateScript = unstableGitUpdater { hardcodeZeroVersion = true; };
 

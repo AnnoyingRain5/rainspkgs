@@ -20,7 +20,7 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "lce-emerald-launcher";
-  version = "nightly-unstable-2026-07-07";
+  version = "1.5.1";
   src = fetchFromGitHub {
     owner = "LCE-Hub";
     repo = "LCE-emerald-launcher";
@@ -51,7 +51,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   ++ lib.optionals stdenv.hostPlatform.isLinux [ wrapGAppsHook4 ];
 
   buildInputs = lib.optionals stdenv.hostPlatform.isLinux [
-    glib-networking # Most Tauri apps need networking
+    glib-networking
     openssl
     systemd
     libappindicator
@@ -66,4 +66,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   cargoRoot = "src-tauri";
   # And make sure we build there too
   buildAndTestSubdir = finalAttrs.cargoRoot;
+
+  meta = {
+    mainProgram = "emerald-legacy-launcher";
+  };
 })

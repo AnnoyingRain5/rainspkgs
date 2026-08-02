@@ -11,8 +11,8 @@
   src = pkgs.fetchFromGitHub {
     owner = "iChris4"; # https://github.com/iChris4/dolphinXR/pull/2
     repo = "dolphinXR";
-    rev = "f500c46df1a1be9a1a4e2afc6c6eb78f0f6251bf";
-    hash = "sha256-5kmQ9YOrAR5Zh/qpphqNIq9Lbh7CWHcp22zQR9ydwWo=";
+    rev = "85c4266b29eb308d173fefa0f21f5cb77df3516a";
+    hash = "sha256-upMspxyggFdIiZLvwdxH/hehhMgU2Wx/tHkEWofykTU=";
     fetchSubmodules = true;
     leaveDotGit = true;
     postFetch = ''

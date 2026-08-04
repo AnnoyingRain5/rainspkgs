@@ -8,8 +8,8 @@
 #     nix-build -A mypackage
 
 {
-  pkgs ? import <nixpkgs> { },
-  nix-cachyos-kernel,
+  nix-cachyos-kernel ? import <nix-catchyos-kernel>,
+  pkgs ? import <nixpkgs> { overlays = [ nix-cachyos-kernel.overlays.default ]; },
 }:
 
 {

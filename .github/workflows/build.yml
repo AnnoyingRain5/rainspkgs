@@ -67,6 +67,7 @@ jobs:
           --option allow-import-from-derivation true \
           --drv-path --show-trace \
           -I nixpkgs=$(nix-instantiate --find-file nixpkgs) \
+          -I nix-cachyos-kernel=$(nix-instantiate --find-file nix-cachyos-kernel) \
           -I $PWD
     - name: Build nix packages
       run: nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs

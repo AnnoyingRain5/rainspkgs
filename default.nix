@@ -8,7 +8,7 @@
 #     nix-build -A mypackage
 
 {
-  nix-cachyos-kernel ? import <nix-catchyos-kernel>,
+  nix-cachyos-kernel ? import <nix-cachyos-kernel>,
   pkgs ? import <nixpkgs> { overlays = [ nix-cachyos-kernel.overlays.default ]; },
 }:
 
@@ -29,7 +29,7 @@
   dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
   _3beans = pkgs.callPackage ./pkgs/_3beans { };
   lce-emerald-launcher = pkgs.callPackage ./pkgs/lce-emerald-launcher { };
-  catchyos-pimax-kernel = pkgs.callPackage ./pkgs/catchyos-pimax-kernel { };
+  cachyos-pimax-kernel = pkgs.callPackage ./pkgs/cachyos-pimax-kernel { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }

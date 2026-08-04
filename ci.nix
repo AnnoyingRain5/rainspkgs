@@ -10,7 +10,7 @@
 # which this is possible.
 
 {
-  nix-cachyos-kernel ? import <nix-catchyos-kernel>,
+  nix-cachyos-kernel ? import <nix-cachyos-kernel>,
   pkgs ? import <nixpkgs> { overlays = [ nix-cachyos-kernel.overlays.default ]; },
 }:
 
@@ -58,7 +58,7 @@ let
 
   outputsOf = p: map (o: p.${o}) p.outputs;
 
-  nurAttrs = import ./default.nix { inherit pkgs; };
+  nurAttrs = import ./default.nix { inherit nix-cachyos-kernel pkgs; };
 
   nurPkgs = flattenPkgs (
     listToAttrs (

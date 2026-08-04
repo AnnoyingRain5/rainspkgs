@@ -3,7 +3,7 @@
 }:
 
 cachyosKernels.linux-cachyos-latest-lto-x86_64-v3.override {
-  pname = "catchyos-pimax-kernel";
+  pname = "cachyos-pimax-kernel";
   lto = "thin";
 
   patches = [

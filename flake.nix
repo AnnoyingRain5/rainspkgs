@@ -19,7 +19,7 @@
             inherit system;
             overlays = [ nix-cachyos-kernel.overlays.default ];
           };
-          nix-cachyos-kernel = import nix-cachyos-kernel { inherit system; };
+          inherit nix-cachyos-kernel;
         }
       );
       packages = forAllSystems (

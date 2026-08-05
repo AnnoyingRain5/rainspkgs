@@ -29,7 +29,7 @@
   dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
   _3beans = pkgs.callPackage ./pkgs/_3beans { };
   lce-emerald-launcher = pkgs.callPackage ./pkgs/lce-emerald-launcher { };
-  cachyos-pimax-kernel = pkgs.callPackage ./pkgs/cachyos-pimax-kernel { };
+  cachyos-pimax-kernel = pkgs.callPackage ./pkgs/cachyos-pimax-kernel { inherit nix-cachyos-kernel; };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }

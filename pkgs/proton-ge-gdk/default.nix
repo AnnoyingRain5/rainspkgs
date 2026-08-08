@@ -1,6 +1,6 @@
-{ pkgs, fetchzip }:
+{ proton-ge-bin, fetchzip }:
 
-(pkgs.proton-ge-bin.override {
+(proton-ge-bin.override {
   steamDisplayName = "GE-Proton-GDK";
 }).overrideAttrs
   (

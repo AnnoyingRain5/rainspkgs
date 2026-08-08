@@ -1,5 +1,6 @@
 {
-  pkgs,
+  callPackage,
+  linuxKernel,
   cachyosKernels,
   nix-cachyos-kernel,
 }:
@@ -15,6 +16,6 @@ let
     ];
   };
 
-  helpers = pkgs.callPackage "${nix-cachyos-kernel.outPath}/helpers.nix" { };
+  helpers = callPackage "${nix-cachyos-kernel.outPath}/helpers.nix" { };
 in
-helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor kernel)
+helpers.kernelModuleLLVMOverride (linuxKernel.packagesFor kernel)

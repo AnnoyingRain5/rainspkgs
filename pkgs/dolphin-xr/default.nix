@@ -1,5 +1,5 @@
 {
-  pkgs,
+  fetchFromGitHub,
   dolphin-emu,
   openxr-loader,
   lib,
@@ -8,7 +8,7 @@
 (dolphin-emu.overrideAttrs (oldattrs: {
   pname = "dolphin-xr";
   buildInputs = (oldattrs.buildInputs or [ ]) ++ [ openxr-loader ];
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "iChris4"; # https://github.com/iChris4/dolphinXR/pull/2
     repo = "dolphinXR";
     rev = "85c4266b29eb308d173fefa0f21f5cb77df3516a";

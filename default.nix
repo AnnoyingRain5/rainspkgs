@@ -27,9 +27,9 @@
   monado-pimax = pkgs.callPackage ./pkgs/monado-pimax { };
   proton-ge-gdk = pkgs.callPackage ./pkgs/proton-ge-gdk { };
   dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
-  _3beans = pkgs.callPackage ./pkgs/_3beans { };
   lce-emerald-launcher = pkgs.callPackage ./pkgs/lce-emerald-launcher { };
   cachyos-pimax-kernel = pkgs.callPackage ./pkgs/cachyos-pimax-kernel { inherit nix-cachyos-kernel; };
+  sable = pkgs.callPackage ./pkgs/sable { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }

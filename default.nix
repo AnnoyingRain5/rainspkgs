@@ -29,6 +29,7 @@
   dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
   lce-emerald-launcher = pkgs.callPackage ./pkgs/lce-emerald-launcher { };
   cachyos-pimax-kernel = pkgs.callPackage ./pkgs/cachyos-pimax-kernel { inherit nix-cachyos-kernel; };
+  xodus = pkgs.callPackage ./pkgs/xodus { };
   sable = pkgs.callPackage ./pkgs/sable { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...

@@ -49,6 +49,5 @@ rustPlatform.buildRustPackage {
     description = "The great gaming migration to Linux";
     homepage = "https://github.com/xodus-gaming/xodus";
     license = lib.licenses.gpl3;
-    maintainers = with lib.maintainers; [ annoyingrains ];
   };
 }

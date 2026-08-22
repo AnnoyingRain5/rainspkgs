@@ -16,13 +16,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "xodus";
-  version = "0.1.0";
+  version = "0-unstable-2026-08-18";
 
   src = fetchFromGitHub {
     owner = "xodus-gaming";
     repo = "xodus";
-    rev = "4615749c6e02cc3b9acce2abbe9916fe8c376f9a";
-    sha256 = "sha256-4BNbNANSsKpiCVLYM8TPWpykum4RQ/cNmsHhiax6pdA=";
+    rev = "77d81f35f08b1bd84712d4e7515c274cee1b1428";
+    sha256 = "sha256-0RuWSKevjdHfqNISj233h/YS7Ax5WripPgBxSGNyaV4=";
   };
 
   cargoHash = "sha256-VenzKiQlyNGsT3bS4wuZmpbEm9KL3dv5JeVtngoZeec=";

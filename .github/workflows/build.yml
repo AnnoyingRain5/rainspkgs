@@ -35,7 +35,7 @@ jobs:
         cachixName:
           - rainspkgs
         nixPath:
-          - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-26.05.tar.gz:nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/refs/heads/master.tar.gz
+          - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-26.05.tar.gz:nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/f39e7d511ce7c2c95a12b828b72d9463f329e68b.tar.gz
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository

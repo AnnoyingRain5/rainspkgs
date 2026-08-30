@@ -1,12 +1,14 @@
 {
   description = "My personal NUR repository";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+  inputs.unstablepkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
   outputs =
     {
       self,
       nixpkgs,
       nix-cachyos-kernel,
+      unstablepkgs,
     }:
     let
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
@@ -16,6 +18,10 @@
         system:
         import ./default.nix {
           pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ nix-cachyos-kernel.overlays.default ];
+          };
+          unstablepkgs = import unstablepkgs {
             inherit system;
             overlays = [ nix-cachyos-kernel.overlays.default ];
           };

@@ -68,6 +68,7 @@ jobs:
           --drv-path --show-trace \
           -I nixpkgs=$(nix-instantiate --find-file nixpkgs) \
           -I nix-cachyos-kernel=$(nix-instantiate --find-file nix-cachyos-kernel) \
+          -I unstablepkgs=$(nix-instantiate --find-file unstablepkgs) \ 
           -I $PWD
     - name: Build nix packages
       run: |

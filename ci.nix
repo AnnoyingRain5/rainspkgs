@@ -12,6 +12,7 @@
 {
   nix-cachyos-kernel ? import <nix-cachyos-kernel>,
   pkgs ? import <nixpkgs> { overlays = [ nix-cachyos-kernel.overlays.default ]; },
+  unstablepkgs ? import <unstablepkgs> { overlays = [ nix-cachyos-kernel.overlays.default ]; },
 }:
 
 with builtins;
@@ -58,7 +59,7 @@ let
 
   outputsOf = p: map (o: p.${o}) p.outputs;
 
-  nurAttrs = import ./default.nix { inherit nix-cachyos-kernel pkgs; };
+  nurAttrs = import ./default.nix { inherit nix-cachyos-kernel pkgs unstablepkgs; };
 
   nurPkgs = flattenPkgs (
     listToAttrs (

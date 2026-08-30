@@ -1,6 +1,6 @@
 {
   description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
   inputs.nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
   outputs =
     {

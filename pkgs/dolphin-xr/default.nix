@@ -6,6 +6,7 @@
 }:
 
 (dolphin-emu.overrideAttrs (oldattrs: {
+  # note : this fails to compile with fmt 12.2.0 and above https://github.com/NixOS/nixpkgs/commit/98f1bcdc7d3fd51ada7d3a08d2e96886bb046a1e
   pname = "dolphin-xr";
   buildInputs = (oldattrs.buildInputs or [ ]) ++ [ openxr-loader ];
   src = fetchFromGitHub {

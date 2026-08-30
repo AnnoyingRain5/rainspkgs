@@ -6,7 +6,7 @@
 }:
 
 let
-  kernel = cachyosKernels.linux-cachyos-latest-lto-x86_64.override {
+  kernel = cachyosKernels.linux-cachyos-latest-lto.override {
     pname = "cachyos-pimax-kernel";
     lto = "thin";
 

@@ -70,7 +70,10 @@ jobs:
           -I nix-cachyos-kernel=$(nix-instantiate --find-file nix-cachyos-kernel) \
           -I $PWD
     - name: Build nix packages
-      run: nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs
+      run: |
+        nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs \
+          -I nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/f39e7d511ce7c2c95a12b828b72d9463f329e68b.tar.gz \
+          -I nixpkgs=$(nix-instantiate --find-file nixpkgs)
     - name: Trigger NUR update
       # Don't replace <YOUR_REPO_NAME> here!
       if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}

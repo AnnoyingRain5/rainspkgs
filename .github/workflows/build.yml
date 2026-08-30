@@ -35,7 +35,7 @@ jobs:
         cachixName:
           - rainspkgs
         nixPath:
-          - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-26.05.tar.gz:nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/refs/heads/master.tar.gz
+          - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-26.05.tar.gz:nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/refs/heads/master.tar.gz:unstablepkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -73,7 +73,8 @@ jobs:
       run: |
         nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs \
           -I nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/refs/heads/master.tar.gz \
-          -I nixpkgs=$(nix-instantiate --find-file nixpkgs)
+          -I nixpkgs=$(nix-instantiate --find-file nixpkgs) \
+          -I nixpkgs=$(nix-instantiate --find-file unstablepkgs)
     - name: Trigger NUR update
       # Don't replace <YOUR_REPO_NAME> here!
       if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}

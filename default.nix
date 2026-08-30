@@ -10,6 +10,7 @@
 {
   nix-cachyos-kernel ? import <nix-cachyos-kernel>,
   pkgs ? import <nixpkgs> { overlays = [ nix-cachyos-kernel.overlays.default ]; },
+  unstablepkgs ? import <unstablepkgs> { overlays = [ nix-cachyos-kernel.overlays.default ]; },
 }:
 
 {
@@ -30,7 +31,9 @@
   lce-emerald-launcher = pkgs.callPackage ./pkgs/lce-emerald-launcher { };
   xodus = pkgs.callPackage ./pkgs/xodus { };
   sable = pkgs.callPackage ./pkgs/sable { };
-  cachyos-pimax-kernel = pkgs.callPackage ./pkgs/cachyos-pimax-kernel { inherit nix-cachyos-kernel; };
+  cachyos-pimax-kernel = unstablepkgs.callPackage ./pkgs/cachyos-pimax-kernel {
+    inherit nix-cachyos-kernel;
+  };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }

@@ -74,7 +74,7 @@ jobs:
         nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs \
           -I nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/refs/heads/master.tar.gz \
           -I nixpkgs=$(nix-instantiate --find-file nixpkgs) \
-          -I nixpkgs=$(nix-instantiate --find-file unstablepkgs)
+          -I unstablepkgs=$(nix-instantiate --find-file unstablepkgs)
     - name: Trigger NUR update
       # Don't replace <YOUR_REPO_NAME> here!
       if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}

@@ -8,7 +8,7 @@
 let
   kernel = cachyosKernels.linux-cachyos-latest-lto.override {
     pname = "cachyos-pimax-kernel";
-    lto = "thin";
+    lto = "none";
 
     patches = [
       ./pimax.patch

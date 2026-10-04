@@ -23,14 +23,14 @@
   # flakeModules = { }; # flake-parts modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  avali-scratch = pkgs.callPackage ./pkgs/avali-scratch { };
-  discord-krisp-patcher = pkgs.callPackage ./pkgs/discord-krisp-patcher { };
-  monado-pimax = pkgs.callPackage ./pkgs/monado-pimax { };
-  proton-ge-gdk = pkgs.callPackage ./pkgs/proton-ge-gdk { };
-  dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
-  lce-emerald-launcher = pkgs.callPackage ./pkgs/lce-emerald-launcher { };
-  xodus = pkgs.callPackage ./pkgs/xodus { };
-  sable = pkgs.callPackage ./pkgs/sable { };
+  avali-scratch = unstablepkgs.callPackage ./pkgs/avali-scratch { };
+  discord-krisp-patcher = unstablepkgs.callPackage ./pkgs/discord-krisp-patcher { };
+  monado-pimax = unstablepkgs.callPackage ./pkgs/monado-pimax { };
+  proton-ge-gdk = unstablepkgs.callPackage ./pkgs/proton-ge-gdk { };
+  dolphin-xr = unstablepkgs.callPackage ./pkgs/dolphin-xr { };
+  lce-emerald-launcher = unstablepkgs.callPackage ./pkgs/lce-emerald-launcher { };
+  xodus = unstablepkgs.callPackage ./pkgs/xodus { };
+  sable = unstablepkgs.callPackage ./pkgs/sable { };
   cachyos-pimax-kernel = unstablepkgs.callPackage ./pkgs/cachyos-pimax-kernel {
     inherit nix-cachyos-kernel;
   };

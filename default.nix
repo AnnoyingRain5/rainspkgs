@@ -27,7 +27,7 @@
   discord-krisp-patcher = unstablepkgs.callPackage ./pkgs/discord-krisp-patcher { };
   monado-pimax = unstablepkgs.callPackage ./pkgs/monado-pimax { };
   proton-ge-gdk = unstablepkgs.callPackage ./pkgs/proton-ge-gdk { };
-  dolphin-xr = unstablepkgs.callPackage ./pkgs/dolphin-xr { };
+  dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
   lce-emerald-launcher = unstablepkgs.callPackage ./pkgs/lce-emerald-launcher { };
   xodus = unstablepkgs.callPackage ./pkgs/xodus { };
   sable = unstablepkgs.callPackage ./pkgs/sable { };

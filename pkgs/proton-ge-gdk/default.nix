@@ -1,11 +1,11 @@
 { proton-ge-bin, fetchzip }:
 
 (proton-ge-bin.override {
+  steamDisplayName = "GE-Proton-GDK";
 }).overrideAttrs
   (
     finalAttrs: _: {
       pname = "proton-ge-gdk-bin";
-      steamDisplayName = "GE-Proton-GDK";
       version = "GE-Proton10-32";
       src = fetchzip {
         url = "https://github.com/Weather-OS/GDK-Proton/releases/download/release10-32/GDK-Proton10-32.tar.gz";

@@ -30,7 +30,6 @@
   dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
   lce-emerald-launcher = unstablepkgs.callPackage ./pkgs/lce-emerald-launcher { };
   xodus = unstablepkgs.callPackage ./pkgs/xodus { };
-  sable = unstablepkgs.callPackage ./pkgs/sable { };
   cachyos-pimax-kernel = unstablepkgs.callPackage ./pkgs/cachyos-pimax-kernel {
     inherit nix-cachyos-kernel;
   };

@@ -27,7 +27,7 @@
   discord-krisp-patcher = unstablepkgs.callPackage ./pkgs/discord-krisp-patcher { };
   monado-pimax = unstablepkgs.callPackage ./pkgs/monado-pimax { };
   proton-ge-gdk = pkgs.callPackage ./pkgs/proton-ge-gdk { };
-  dolphin-xr = pkgs.callPackage ./pkgs/dolphin-xr { };
+  dolphin-xr = unstablepkgs.callPackage ./pkgs/dolphin-xr { oldfmt = pkgs.fmt_11; };
   lce-emerald-launcher = unstablepkgs.callPackage ./pkgs/lce-emerald-launcher { };
   xodus = unstablepkgs.callPackage ./pkgs/xodus { };
   cachyos-pimax-kernel = unstablepkgs.callPackage ./pkgs/cachyos-pimax-kernel {

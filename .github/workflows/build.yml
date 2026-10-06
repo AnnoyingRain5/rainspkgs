@@ -6,77 +6,34 @@ on:
       - main
       - master
   schedule:
-    # rebuild everyday at 8:27
-    # TIP: Choose a random time here so not all repositories are build at once:
-    # https://www.random.org/clock-times/?num=1&earliest=01%3A00&latest=08%3A00&interval=5&format=html&rnd=new
-    - cron:  '27 8 * * *'
+    - cron: "27 8 * * *"
   workflow_dispatch:
+
 jobs:
-  tests:
-    strategy:
-      matrix:
-        # Set this to notify the global nur package registry that changes are
-        # available.
-        #
-        # The repo name as used in
-        # https://github.com/nix-community/NUR/blob/master/repos.json
-        nurRepo:
-          - rainspkgs
-        # Set this to cache your build results in cachix for faster builds
-        # in CI and for everyone who uses your cache.
-        #
-        # Format: Your cachix cache host name without the ".cachix.org" suffix.
-        # Example: mycache (for mycache.cachix.org)
-        #
-        # For this to work, you also need to set the CACHIX_SIGNING_KEY or
-        # CACHIX_AUTH_TOKEN secret in your repository secrets settings in
-        # Github found at
-        # https://github.com/<your_githubname>/nur-packages/settings/secrets
-        cachixName:
-          - rainspkgs
-        nixPath:
-          - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-26.05.tar.gz:nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/refs/heads/master.tar.gz:unstablepkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v7
-    - name: Install nix
-      uses: cachix/install-nix-action@v31
-      with:
-        nix_path: "${{ matrix.nixPath }}"
-        extra_nix_config: |
-          experimental-features = nix-command flakes
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-    - name: Show nixpkgs version
-      run: nix-instantiate --eval -E '(import <nixpkgs> {}).lib.version'
-    - name: Setup cachix
-      uses: cachix/cachix-action@v17
-      # Don't replace <YOUR_CACHIX_NAME> here!
-      if: ${{ matrix.cachixName != '<YOUR_CACHIX_NAME>' }}
-      with:
-        name: ${{ matrix.cachixName }}
-        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Check evaluation
-      run: |
-        nix-env -f . -qa \* --meta --xml \
-          --allowed-uris https://static.rust-lang.org \
-          --allowed-uris https://github.com/NixOS/flake-compat/archive \
-          --allowed-uris https://github.com/hercules-ci/flake-parts \
-          --option restrict-eval false \
-          --option allow-import-from-derivation true \
-          --drv-path --show-trace \
-          -I nixpkgs=$(nix-instantiate --find-file nixpkgs) \
-          -I nix-cachyos-kernel=$(nix-instantiate --find-file nix-cachyos-kernel) \
-          -I unstablepkgs=$(nix-instantiate --find-file unstablepkgs) \ 
-          -I $PWD
-    - name: Build nix packages
-      run: |
-        nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs \
-          -I nix-cachyos-kernel=https://github.com/xddxdd/nix-cachyos-kernel/archive/refs/heads/master.tar.gz \
-          -I nixpkgs=$(nix-instantiate --find-file nixpkgs) \
-          -I unstablepkgs=$(nix-instantiate --find-file unstablepkgs)
-    - name: Trigger NUR update
-      # Don't replace <YOUR_REPO_NAME> here!
-      if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}
-      run: curl -XPOST "https://nur-update.nix-community.org/update?repo=${{ matrix.nurRepo }}"
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup cachix
+        uses: cachix/cachix-action@v17
+        with:
+          name: rainspkgs
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Build all packages
+        run: |
+          nix flake check
+          nix eval --json '.#packages.x86_64-linux' | jq -r 'keys[]' | \
+            xargs -I {} nix build --no-link ".#{}"
+
+      - name: Trigger NUR update
+        if: github.event_name != 'pull_request'
+        run: curl -XPOST "https://nur-update.nix-community.org/update?repo=rainspkgs"

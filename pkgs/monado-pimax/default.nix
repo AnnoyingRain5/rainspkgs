@@ -10,8 +10,8 @@ monado.overrideAttrs (oldAttrs: {
     domain = "gitlab.freedesktop.org";
     owner = "AnnoyingRain5";
     repo = "monado";
-    rev = "492c5e3c25f4fd8fc4b64d08b3c0787ccb2b59e0";
-    hash = "sha256-GO5yGf092MFDK7R0++TgKOwmcp39cPK9pwmHs3RWNq4=";
+    rev = "0c85c422f77647356c136ee032be256be73637c8";
+    hash = "sha256-Z/1ZdvNsAOB1dGqAYE1yL8dkanxr/LjrzFM8yolqsac=";
   };
   patches = builtins.filter (
     patch: patch.name != "monado-cylinder-aspectRatio.patch"

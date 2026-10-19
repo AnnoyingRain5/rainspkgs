@@ -33,6 +33,7 @@
   cachyos-pimax-kernel = unstablepkgs.callPackage ./pkgs/cachyos-pimax-kernel {
     inherit nix-cachyos-kernel;
   };
+  proton-xodus = unstablepkgs.callPackage ./pkgs/proton-xodus { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }

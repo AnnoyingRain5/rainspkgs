@@ -12,6 +12,7 @@
   lib,
   rustPlatform,
   fetchFromGitHub,
+  cmake,
 }:
 
 rustPlatform.buildRustPackage {
@@ -30,6 +31,7 @@ rustPlatform.buildRustPackage {
   nativeBuildInputs = [
     pkg-config
     protobuf
+    cmake
     #cargo-tauri.hook
     wrapGAppsHook4
   ];
